@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection="collaborator")
 @Getter
 @Setter
@@ -18,7 +20,7 @@ public class Collaborator {
     private String password;
     private String organisation;
     private String professionalSummary;
-    private String skills;
+    private List<String> skills;
     private String projectTypes;
     private String availability;
     @Transient
