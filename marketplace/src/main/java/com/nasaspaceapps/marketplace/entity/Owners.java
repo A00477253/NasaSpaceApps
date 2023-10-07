@@ -13,8 +13,6 @@ import java.util.List;
 @Setter
 
 public class Owners {
-    @Id
-    private String id;
     private String projectName;
     private String ownedBy;
     private String referenceLink;
