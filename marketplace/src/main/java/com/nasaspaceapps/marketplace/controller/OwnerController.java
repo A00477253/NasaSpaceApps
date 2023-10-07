@@ -22,7 +22,6 @@ public class OwnerController {
     @PostMapping("/save")
     public ResponseEntity<Owners> saveOwner(@RequestBody Owners owners) throws Exception {
         log.info("The owner object is {}",owners);
-        List<Owners> ownersList=ownerService.getAllOwners();
         Owners savedOwner=ownerService.getOwnerByEmailId(owners.getEmailId());
         if(savedOwner!=null){
             Owners errorOwner=new Owners();

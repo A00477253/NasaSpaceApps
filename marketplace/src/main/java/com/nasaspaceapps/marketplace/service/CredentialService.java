@@ -1,6 +1,8 @@
 package com.nasaspaceapps.marketplace.service;
 
+import com.nasaspaceapps.marketplace.entity.Collaborator;
 import com.nasaspaceapps.marketplace.entity.Credentials;
+import com.nasaspaceapps.marketplace.entity.Owners;
 import com.nasaspaceapps.marketplace.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,4 +16,5 @@ public class CredentialService implements ICredentialService{
     public Credentials getCredentialsByEmailId( String emailId) {
         return credentialsRepository.findByEmailId(emailId);
     }
+
 }
