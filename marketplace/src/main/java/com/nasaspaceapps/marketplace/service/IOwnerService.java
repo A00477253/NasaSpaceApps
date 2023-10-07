@@ -12,4 +12,6 @@ public interface IOwnerService {
     Owners getOwnerByEmailId(String emaiId);
 
     void saveOwnerCredentials(Owners owners);
+
+    List<Owners> getOwnerBySkillsMatched(List<String> skills);
 }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/owner")
@@ -28,6 +29,12 @@ public class OwnerController {
             errorOwner.setErrorMessage("Owner Email id is already available");
             return new ResponseEntity<>(errorOwner, HttpStatus.BAD_REQUEST);
         }
+        List<String> techStacksList = owners.getTechStack()
+                .stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+        owners.setTechStack(techStacksList);
+
         ownerService.saveOwnerCredentials(owners);
         return new ResponseEntity<>(ownerService.saveOwner(owners), HttpStatus.OK);
     }
@@ -37,4 +44,6 @@ public class OwnerController {
         Owners savedOwner=ownerService.getOwnerByEmailId(emailId);
         return new ResponseEntity<>(savedOwner,HttpStatus.OK);
     }
+
+
 }

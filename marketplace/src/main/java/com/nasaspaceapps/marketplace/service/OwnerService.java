@@ -44,4 +44,9 @@ public class OwnerService implements IOwnerService{
         credentials.setEmailId(owners.getEmailId());
         credentialsRepository.save(credentials);
     }
+
+    @Override
+    public List<Owners> getOwnerBySkillsMatched(List<String> skills) {
+        return ownerRepository.findByTechStackIn(skills);
+    }
 }
