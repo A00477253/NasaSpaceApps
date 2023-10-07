@@ -5,10 +5,11 @@ import com.nasaspaceapps.marketplace.entity.Owners;
 import com.nasaspaceapps.marketplace.service.IOwnerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/owner")
@@ -19,8 +20,22 @@ public class OwnerController {
     private IOwnerService ownerService;
 
     @PostMapping("/save")
-    public Owners saveOwner(@RequestBody Owners owners){
+    public ResponseEntity<Owners> saveOwner(@RequestBody Owners owners) throws Exception {
         log.info("The owner object is {}",owners);
-        return ownerService.saveOwner(owners);
+        List<Owners> ownersList=ownerService.getAllOwners();
+        Owners savedOwner=ownerService.getOwnerByEmailId(owners.getEmailId());
+        if(savedOwner!=null){
+            Owners errorOwner=new Owners();
+            errorOwner.setErrorMessage("Owner Email id is already available");
+            return new ResponseEntity<>(errorOwner, HttpStatus.BAD_REQUEST);
+        }
+        ownerService.saveOwnerCredentials(owners);
+        return new ResponseEntity<>(ownerService.saveOwner(owners), HttpStatus.OK);
+    }
+
+    @GetMapping("/getOwnerByEmailId/{emailId}")
+    public ResponseEntity<Owners> getOwnerByEmailId(@PathVariable("emailId") String emailId){
+        Owners savedOwner=ownerService.getOwnerByEmailId(emailId);
+        return new ResponseEntity<>(savedOwner,HttpStatus.OK);
     }
 }
