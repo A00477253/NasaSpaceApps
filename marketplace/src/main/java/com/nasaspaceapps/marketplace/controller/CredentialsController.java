@@ -22,6 +22,8 @@ public class CredentialsController {
     @Autowired
     private IOwnerService ownerService;
 
+
+
     @GetMapping("/fetch")
     public ResponseEntity<Credentials> getCredentials( @RequestParam(name = "emailId")String emailId){
         Credentials credentials=credentialService.getCredentialsByEmailId
@@ -45,4 +47,6 @@ public class CredentialsController {
             return new ResponseEntity<>(owner,HttpStatus.BAD_REQUEST);
         }
     }
+
+
 }

@@ -7,6 +7,8 @@ import com.nasaspaceapps.marketplace.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CollaboratorService implements ICollaboratorService{
 
@@ -33,6 +35,11 @@ public class CollaboratorService implements ICollaboratorService{
     @Override
     public Collaborator getCollaboratorByEmailId(String emailId) {
         return collaboratorRepository.findByEmailId(emailId);
+    }
+
+    @Override
+    public List<Collaborator> getCollabsByTechStacks(List<String> techSkills) {
+        return collaboratorRepository.findBySkillsInIgnoreCase(techSkills);
     }
 
 }

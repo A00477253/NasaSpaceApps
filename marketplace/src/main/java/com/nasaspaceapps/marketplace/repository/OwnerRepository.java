@@ -12,5 +12,5 @@ public interface OwnerRepository extends MongoRepository<Owners,String> {
 
     Owners findByEmailId(String emailId);
 
-    List<Owners> findByTechStackIn(List<String> skills);
+    List<Owners> findByTechStackInIgnoreCase(List<String> skills);
 }

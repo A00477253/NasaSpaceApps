@@ -47,6 +47,6 @@ public class OwnerService implements IOwnerService{
 
     @Override
     public List<Owners> getOwnerBySkillsMatched(List<String> skills) {
-        return ownerRepository.findByTechStackIn(skills);
+        return ownerRepository.findByTechStackInIgnoreCase(skills);
     }
 }
