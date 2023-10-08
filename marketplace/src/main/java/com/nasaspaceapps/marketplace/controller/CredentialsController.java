@@ -26,7 +26,7 @@ public class CredentialsController {
     public ResponseEntity<Credentials> getCredentials( @RequestParam(name = "emailId")String emailId){
         Credentials credentials=credentialService.getCredentialsByEmailId
                 (emailId.toLowerCase());
-        log.info("The credential objetc is {}",credentials);
+        log.info("The credential object is {}",credentials);
         return new ResponseEntity<>
                 (credentials
                         , HttpStatus.OK);

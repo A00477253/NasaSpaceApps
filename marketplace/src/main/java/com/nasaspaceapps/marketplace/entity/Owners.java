@@ -20,14 +20,16 @@ public class Owners {
 
     private String emailId;
     private String projectName;
-    private String ownedBy;
     private String referenceLink;
     private List<String> techStack;
-    private String expectedOutcome;
     @Transient
     private String errorMessage;
     @Transient
     private String password;
+    private String projectOrganization;
+    private String description;
+    private String expectedScopeOfWork;
+    private String expectedTimeline;
 
 
 

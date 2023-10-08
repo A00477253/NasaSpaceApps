@@ -21,7 +21,7 @@ public class Collaborator {
     private String organisation;
     private String professionalSummary;
     private List<String> skills;
-    private String projectTypes;
+    private String typesOfProject;
     private String availability;
     @Transient
     private String errorMessage;
